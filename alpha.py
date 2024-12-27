@@ -395,6 +395,13 @@ def upload_file():
                 mr_statement = details.get('MR', 'N/A')
                 details['MR'] = mr_mapping.get(mr_statement, mr_statement)  
 
+                if details['comment'] == 'Found as Direct Search':
+                    details['comment'] = 'Data Found via Direct Search'
+                elif details['comment'] == 'Need Manual Verification':
+                    details['comment'] = 'Need Manual Verification'
+                elif details['comment'] == 'Data not found':
+                    details['comment'] = 'No Data Found'
+
                 results.append(details)
 
             results_df = pd.DataFrame(results)
